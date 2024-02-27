@@ -3,9 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>patTo 펫토</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    this is master
+    <div class="wrap">
+    <div id="container">
+        <header>
+            <img class="main-logo" src="img/main-logo.png">
+        <section class="menubar">
+            <button>홈</button>
+            <button>보호소 정보</button>
+            <button>자원봉사</button>
+            <button>나의 관심동물</button>
+            <button>쇼핑</button>
+            <button>게시판</button>
+        </section>
+        <div class="menu">
+            <button><img class="heart" src="img/heart-solid.svg"></button>
+            <button><img class="hamburgerMenu" src="img/bars-solid.svg"></button>
+        </div> 
+        </header>   
+        <div class="main-banner">n마리의 아이들이 보호자를 기다리고 있어요 </div>
+        <div class="select">
+        <div class="each">
+            <button id="dog-icon"><img src="img/main-dog.png"></button><span>강아지</span>
+        </div>
+        <div class="each">
+            <button id="cat-icon"><img src="img/main-cat.png"></button><span>고양이</span>
+        </div>
+        <div class="input-area">
+            <div class="species" >
+                <button>품종</button><input type="text">
+            </div>
+            <div class="local">
+                <button>지역</button><input type="text">
+            </div>
+        </div>
+        </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
 </body>
 </html>

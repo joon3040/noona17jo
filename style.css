@@ -1,0 +1,105 @@
+header {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+@media screen and (max-width:600px) {
+    header {
+      justify-content: space-between;
+    }
+  }
+header button {
+    border: none;
+    margin: 20px;
+    font-weight: bold;
+}
+.menubar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    margin: 7px 10px 0px 40px;
+    border-bottom: 3px solid lightblue ;
+}
+@media screen and (max-width:600px) {
+    .menubar {
+      display: none;
+    }
+  }
+.menu {
+    display: flex;
+    justify-content: center;
+}
+.hamburgerMenu {
+    width: 30px;
+    height: 30px;
+}
+.heart {
+    width: 30px;
+    height: 30px;
+}
+.wrap {
+    display: flex;
+    justify-content: center;
+}
+.main-banner {
+    text-align: center;
+    font-size: 25px;
+    margin: 70px;
+    margin-bottom: 50px;
+    font-weight: bold;
+}
+.select {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid lightblue;
+    margin-top: 25px;
+    flex-wrap: wrap
+}
+.main-icon {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+}
+.each {
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+}
+.each span {
+    text-align: center;
+}
+.each button {
+    border: none;
+}
+.main-icon img {
+    margin: 15px;
+}
+.each img:hover {
+    border: 5px solid lightblue;
+    border-radius: 10%;
+}
+.input-area {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+.input-area button {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.input-area input {
+    margin-right: 25px;
+    height: 25px;
+}
+.species{
+    padding: 50px 0px 50px 30px;
+}
+.local {
+    padding: 50px 0px 50px 0px;
+}
