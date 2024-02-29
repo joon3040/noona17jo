@@ -33,6 +33,7 @@
     width: 100%;
     height: 12.4rem;
     border-radius: 10px;
+    cursor: pointer;
 }
 .img-box img{
     width: 100%;
@@ -89,6 +90,13 @@
     position: absolute;
     bottom: 30%;
     right: 7%;
+    cursor: pointer;
+}
+.blue{
+    color: #67A8F4;
+}
+.pink{
+    color: #F33A71;
 }
 @media(max-width:1024px){
 .container{
