@@ -1,7 +1,6 @@
 let puppyList = [];
 const apiKey = `50a90492567241f98925e8b285acfa3f`;
 let pop = [];
-
 let url = new URL(
   `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}`
 );
@@ -14,24 +13,13 @@ const getPuppy = async () => {
   pop = animal[1].row.filter((data) => {
     return data.SEX_NM == "Q";
   });
-  console.log(pop);
+//   console.log(pop);
   filter = animal[1].row.filter(
     (element) => element.SEX_NM !== "Q" && element.STATE_NM == "보호중"
   );
   puppyList = filter;
-  console.log(puppyList);
-  colorFuntion();
+//   console.log(puppyList);
   render();
-};
-
-const colorFuntion = () => {
-  let color = document.getElementById("gender");
-  console.log(color);
-  // if(color.textContent == "남아"){
-  //     color.classList.add("blue");
-  // }else{
-  //     color.classList.add("pink");
-  // }
 };
 
 // 1.새로운함수에 데이터가 담긴배열을 다 담아준다.
