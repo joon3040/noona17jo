@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="login.css" />
+    <title>sign-up</title>
+    <link rel="stylesheet" href="sign-up.css" />
   </head>
   <body>
-    <form id="login-form" class="hidden">
+    <form id="sign-up-form">
       <fieldset>
-        <legend>로그인</legend>
+        <legend>회원가입</legend>
         <label for="name">아이디</label>
         <input type="text" name="name" id="user-id" required max="15" />
         <label for="password">비밀번호</label>
@@ -20,12 +20,17 @@
           required
           min="6"
         />
+        <label for="password-re">비밀번호 확인</label>
+        <input
+          type="password"
+          name="password-re"
+          id="password-re"
+          required
+          min="6"
+        />
         <button>확인</button>
       </fieldset>
     </form>
-    <button id="sign-up-move" class="hidden">회원가입</button>
-    <button id="log-out" class="hidden">로그아웃</button>
-    <button id="unregister" class="hidden">회원탈퇴</button>
-    <script src="login.js"></script>
+    <script src="sign-up.js"></script>
   </body>
 </html>
