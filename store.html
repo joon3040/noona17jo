@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 정보</title>
+    <style>
+        /* 스타일을 CSS로 정의합니다. */
+        #searchContainer, #productContainer {
+            width: 80%; /* 컨테이너의 너비를 설정합니다. */
+            margin: 0 auto; /* 가운데 정렬을 위해 좌우 마진을 자동으로 설정합니다. */
+            text-align: center; /* 검색창과 버튼을 가운데 정렬합니다. */
+        }
+
+        #searchInput {
+            margin-bottom: 10px; /* 검색 입력란 아래에 간격을 줍니다. */
+        }
+
+        #searchButton {
+            margin-left: 10px; /* 검색 버튼을 검색 입력란 오른쪽에 간격을 줍니다. */
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px; /* 각 상품 간의 간격을 조정합니다. */
+        }
+        .product img {
+            width: 100%; /* 이미지를 부모 요소에 맞게 조절합니다. */
+            height: auto; /* 이미지의 비율을 유지합니다. */
+            max-width: 100%; /* 이미지의 최대 너비를 설정합니다. */
+            max-height: 200px; /* 이미지의 최대 높이를 설정합니다. */
+        }
+        .quantity-controls {
+            margin-top: 10px;
+        }
+        .quantity-controls button {
+            margin: 0 5px;
+        }
+        .quantity-display {
+            margin: 0 5px;
+        }
+        .order-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: yellow;
+            color: black;
+            border: none;
+            cursor: pointer;
+        }
+
+        .titleContainer {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: orange  ;
+            font: bold;
+        }
+
+        
+
+
+
+    </style>
+</head>
+<body>
+   <!-- 제목 입력란을 가운데 정렬한 컨테이너 -->
+<div class="titleContainer">
+    <h1><a href="store.html" style="text-decoration: none; color: inherit;">펫 스토어</a></h1>
+</div>
+
+    <!-- 검색창을 포함한 컨테이너 -->
+    <div id="searchContainer">
+        <input type="text" id="searchInput" placeholder="상품을 검색하세요...">
+        <button id="searchButton">검색</button>
+    </div>
+
+    <!-- 상품 정보를 담는 컨테이너 -->
+    <div id="productContainer">
+    </div>
+
+    <script>
+        // 상품 정보를 배열로 정의합니다.
+        let products = [
+            {
+                image: 'img/us-product/pic9.jpg',
+                name: '상품 1',
+                price: 17000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 1에 대한 설명입니다.'
+            },
+            {
+                image: 'img/us-product/pic10.jpg',
+                name: '상품 2',
+                price: 10000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 2에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/us-product/pic11.jpg',
+                name: '상품 3',
+                price: 16000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 3에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/us-product/pic12.jpg',
+                name: '상품 4',
+                price: 12000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 4에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/us-product/pic13.jpg',
+                name: '상품 5',
+                price: 27000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 5에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/us-product/pic14.jpg',
+                name: '상품 6',
+                price: 20000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 6에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/us-product/pic15.jpg',
+                name: '상품 7',
+                price: 15000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 7에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/us-product/pic16.jpg',
+                name: '상품 8',
+                price: 25000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 8에 대한 설명입니다.'
+            }
+            // 추가 상품 정보를 필요에 따라 추가할 수 있습니다.
+        ];
+
+        // 상품 정보를 표시하는 함수를 정의합니다.
+        function displayProducts(filter) {
+            let container = document.getElementById('productContainer');
+            container.innerHTML = '';
+
+            products.forEach(function(product) {
+                if (!filter || product.name.toLowerCase().includes(filter.toLowerCase())) {
+                    let productDiv = document.createElement('div');
+                    productDiv.classList.add('product');
+
+                    let image = document.createElement('img');
+                    image.src = product.image;
+                    productDiv.appendChild(image);
+
+                    let name = document.createElement('h2');
+                    name.textContent = product.name;
+                    productDiv.appendChild(name);
+
+                    let price = document.createElement('p');
+                    price.textContent = '가격: ' + product.price + '원';
+                    productDiv.appendChild(price);
+
+                    let quantityControls = document.createElement('div');
+                    quantityControls.classList.add('quantity-controls');
+
+                    let decreaseButton = document.createElement('button');
+                    decreaseButton.textContent = '-';
+                    decreaseButton.addEventListener('click', function() {
+                        if (product.quantity > 0) {
+                            product.quantity--;
+                            updateQuantity();
+                        }
+                    });
+                    quantityControls.appendChild(decreaseButton);
+
+                    let quantityDisplay = document.createElement('span');
+                    quantityDisplay.classList.add('quantity-display');
+                    quantityDisplay.textContent = product.quantity;
+                    quantityControls.appendChild(quantityDisplay);
+
+                    let increaseButton = document.createElement('button');
+                    increaseButton.textContent = '+';
+                    increaseButton.addEventListener('click', function() {
+                        product.quantity++;
+                        updateQuantity();
+                    });
+                    quantityControls.appendChild(increaseButton);
+
+                    productDiv.appendChild(quantityControls);
+
+                    let description = document.createElement('p');
+                    description.textContent = '설명: ' + product.description;
+                    productDiv.appendChild(description);
+
+                    let orderButton = document.createElement('button');
+                    orderButton.textContent = '주문하기';
+                    orderButton.classList.add('order-button');
+                    orderButton.addEventListener('click', function() {
+                        orderProduct(product);
+                    });
+                    productDiv.appendChild(orderButton);
+
+                    container.appendChild(productDiv);
+                }
+            });
+        }
+
+        // 상품의 수량을 업데이트하는 함수입니다.
+        function updateQuantity() {
+            displayProducts(getSearchQuery());
+        }
+
+        // 상품을 주문하는 함수입니다.
+        function orderProduct(product) {
+            // 주문 완료 페이지로 이동합니다.
+            window.location.href = "ordercomplete.html"; // 주문 완료 페이지의 파일명 또는 경로로 변경하세요.
+        }
+
+        // 검색어를 반환하는 함수입니다.
+        function getSearchQuery() {
+            return document.getElementById('searchInput').value;
+        }
+
+        // 검색 버튼을 클릭할 때마다 상품 목록을 다시 표시합니다.
+        document.getElementById('searchButton').addEventListener('click', function() {
+            displayProducts(getSearchQuery());
+        });
+
+        // 페이지 로드 시 상품을 표시합니다.
+        displayProducts();
+    </script>
+</body>
+</html>
