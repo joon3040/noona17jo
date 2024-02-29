@@ -1,105 +1,162 @@
 header {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
-    width: 100%;
-    height: 100px;
-    margin-bottom: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
 }
-@media screen and (max-width:600px) {
-    header {
-      justify-content: space-between;
-    }
+@media screen and (max-width: 720px) {
+  header {
+    justify-content: space-between;
   }
+}
 header button {
-    border: none;
-    margin: 20px;
-    font-weight: bold;
+  border: none;
+  margin: 20px;
+  font-weight: bold;
 }
 .menubar {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
-    margin: 7px 10px 0px 40px;
-    border-bottom: 3px solid lightblue ;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  margin: 15px 10px 0px 40px;
+  border-bottom: 3px solid lightblue;
 }
-@media screen and (max-width:600px) {
-    .menubar {
-      display: none;
-    }
+.menubar button {
+  font-size: 16px;
+}
+@media screen and (max-width: 980px) {
+  .menubar button {
+    margin: 0px 14px 15px 14px;
   }
+}
+@media screen and (max-width: 720px) {
+  .menubar {
+    display: none;
+  }
+}
 .menu {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .hamburgerMenu {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
 .heart {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
+}
+.closebtn {
+  width: 35px;
+  height: 35px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: none;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  margin-left: 60px;
+}
+.side-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.side-menu-list button {
+  margin: 13px;
+  border: none;
+  background: none;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.side-menu-list button:hover {
+  background-color: lightblue;
+}
+#mySideNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
 }
 .wrap {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .main-banner {
-    text-align: center;
-    font-size: 25px;
-    margin: 70px;
-    margin-bottom: 50px;
-    font-weight: bold;
+  text-align: center;
+  font-size: 25px;
+  margin: 70px;
+  margin-bottom: 50px;
+  font-weight: bold;
 }
 .select {
-    display: flex;
-    justify-content: center;
-    border-bottom: 2px solid lightblue;
-    margin-top: 25px;
-    flex-wrap: wrap
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid lightblue;
+  margin-top: 25px;
+  flex-wrap: wrap;
 }
 .main-icon {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 200px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
 }
 .each {
-    display: flex;
-    flex-direction: column;
-    margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 25px;
 }
 .each span {
-    text-align: center;
+  text-align: center;
 }
 .each button {
-    border: none;
+  border: none;
 }
 .main-icon img {
-    margin: 15px;
+  margin: 15px;
 }
 .each img:hover {
-    border: 5px solid lightblue;
-    border-radius: 10%;
+  border: 5px solid lightblue;
+  border-radius: 10%;
 }
 .input-area {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
 }
 .input-area button {
-    margin-right: 10px;
-    margin-bottom: 5px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  height: 30px;
+  width: 45px;
+  margin-top: 71px;
 }
 .input-area input {
-    margin-right: 25px;
-    height: 25px;
+  margin-right: 15px;
+  height: 25px;
 }
-.species{
-    padding: 50px 0px 50px 30px;
+.species {
+  padding: 50px 0px 50px 30px;
+  display: flex;
+  flex-direction: column;
 }
 .local {
-    padding: 50px 0px 50px 0px;
+  padding: 50px 0px 50px 0px;
+  display: flex;
+  flex-direction: column;
 }
