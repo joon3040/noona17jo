@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 정보</title>
+    <style>
+        /* 스타일을 CSS로 정의합니다. */
+        #searchContainer, #productContainer {
+            width: 80%; /* 컨테이너의 너비를 설정합니다. */
+            margin: 0 auto; /* 가운데 정렬을 위해 좌우 마진을 자동으로 설정합니다. */
+            text-align: center; /* 검색창과 버튼을 가운데 정렬합니다. */
+        }
+
+        #searchInput {
+            margin-bottom: 10px; /* 검색 입력란 아래에 간격을 줍니다. */
+        }
+
+        #searchButton {
+            margin-left: 10px; /* 검색 버튼을 검색 입력란 오른쪽에 간격을 줍니다. */
+        }
+
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 20px; /* 각 상품 간의 간격을 조정합니다. */
+        }
+        .product img {
+            width: 100%; /* 이미지를 부모 요소에 맞게 조절합니다. */
+            height: auto; /* 이미지의 비율을 유지합니다. */
+            max-width: 100%; /* 이미지의 최대 너비를 설정합니다. */
+            max-height: 200px; /* 이미지의 최대 높이를 설정합니다. */
+        }
+        .quantity-controls {
+            margin-top: 10px;
+        }
+        .quantity-controls button {
+            margin: 0 5px;
+        }
+        .quantity-display {
+            margin: 0 5px;
+        }
+        .order-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: yellow;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-weight: bold; /* 텍스트를 굵게 만듭니다. */
+        }
+
+        .titleContainer {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: orange  ;
+            font: bold;
+        }
+        #paginationContainer {
+    text-align: center; /* pagination 버튼을 가운데 정렬합니다. */
+    margin-top: 10px; /* pagination과 다른 요소 사이의 간격을 설정합니다. */
+   }
+   .page-link {
+    padding: 5px 10px; /* 위, 아래 패딩 5px, 좌우 패딩 10px */
+}
+
+
+
+    </style>
+</head>
+<body>
+    
+
+   <!-- 제목 입력란을 가운데 정렬한 컨테이너 -->
+<div class="titleContainer">
+    <h1><a href="store.html" style="text-decoration: none; color: inherit;">펫 스토어</a></h1>
+</div>
+
+    <!-- 검색창을 포함한 컨테이너 -->
+    <div id="searchContainer">
+        <input type="text" id="searchInput" placeholder="상품을 검색하세요...">
+        <button id="searchButton">검색</button>
+    </div>
+
+    <!-- 상품 정보를 담는 컨테이너 -->
+    <div id="productContainer">
+    </div>
+
+<!-- 페이지네이션을 표시할 컨테이너를 추가합니다. -->
+<div class="pagination" id="paginationContainer"></div>
+
+    <script>
+
+        
+        // 상품 정보를 배열로 정의합니다.
+        let products = [
+            {
+                image: 'img/kr-product/pic1.png',
+                name: '고양이 휴대폰 케이스',
+                price: 8000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 1에 대한 설명입니다.'
+            },
+            {
+                image: 'img/kr-product/pic2.jpg',
+                name: '벤토나이트 고양이 모래',
+                price: 7800,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 2에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic3.jpg',
+                name: '고양이 모래 탈취제',
+                price: 6000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 3에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic4.png',
+                name: '고양이 페이스 쿠션',
+                price: 12500,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 4에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic5.jpg',
+                name: '노즈워크 강아지 장난감',
+                price: 4000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 5에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic6.jpg',
+                name: '데이스포 소고기황태 600g',
+                price: 2300,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 6에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic7.jpg',
+                name: '참치캔 1+1',
+                price: 1400,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 7에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic8.jpg',
+                name: '벨버드 강아지 덴탈껌',
+                price: 2700,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 8에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic9.png',
+                name: '삼색이 볼펜',
+                price: 1500,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 9에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic10.jpg',
+                name: '펫스테이지 이갈이 장난감',
+                price: 4500,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 10에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic11.jpg',
+                name: '벨버드 강아지 배변봉투',
+                price: 1500,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 11에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic12.jpg',
+                name: '리리 강아지 인형',
+                price: 5000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic13.jpg',
+                name: '벨버드 실타래인형 곰돌이',
+                price: 7000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic14.jpg',
+                name: '삼색이 캐릭터 스티커',
+                price: 700,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic15.jpg',
+                name: '삼색이 오두막 텐트 대형',
+                price: 50000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic16.jpg',
+                name: '말러 강아지 산책가방',
+                price: 12500,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic17.jpg',
+                name: '벨버드 야채닭고기 원형캔',
+                price: 2500,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic18.jpg',
+                name: '데이스포 흰살 참치와 멸치',
+                price: 1700,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic19.jpg',
+                name: '삼색 캐릭터 노트북 파우치',
+                price: 10000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic20.jpg',
+                name: '삼색이 마그넷',
+                price: 1500,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+            ,
+            {
+                image: 'img/kr-product/pic21.jpg',
+                name: '고양이 인형',
+                price: 3000,
+                quantity: 0, // 초기값은 0으로 설정
+                description: '상품 12에 대한 설명입니다.'
+            }
+   
+            // 추가 상품 정보를 필요에 따라 추가할 수 있습니다.
+        ];
+
+        // 상품 정보를 표시하는 함수를 정의합니다.
+        function displayProducts(filter) {
+    let container = document.getElementById('productContainer');
+    container.innerHTML = '';
+
+    products.forEach(function(product) {
+        if (!filter || product.name.toLowerCase().includes(filter.toLowerCase())) {
+            let productDiv = document.createElement('div');
+            productDiv.classList.add('product');
+
+            let image = document.createElement('img');
+            image.src = product.image;
+            productDiv.appendChild(image);
+
+            let name = document.createElement('h2');
+            name.textContent = product.name;
+            productDiv.appendChild(name);
+
+            let price = document.createElement('p');
+            price.textContent = '가격: ' + product.price + '원';
+            productDiv.appendChild(price);
+
+            let quantityControls = document.createElement('div');
+            quantityControls.classList.add('quantity-controls');
+
+            let decreaseButton = document.createElement('button');
+            decreaseButton.textContent = '-';
+            decreaseButton.addEventListener('click', function() {
+                if (product.quantity > 0) {
+                    product.quantity--;
+                    updateQuantity();
+                }
+            });
+            quantityControls.appendChild(decreaseButton);
+
+            let quantityDisplay = document.createElement('span');
+            quantityDisplay.classList.add('quantity-display');
+            quantityDisplay.textContent = product.quantity;
+            quantityControls.appendChild(quantityDisplay);
+
+            let increaseButton = document.createElement('button');
+            increaseButton.textContent = '+';
+            increaseButton.addEventListener('click', function() {
+                product.quantity++;
+                updateQuantity();
+            });
+            quantityControls.appendChild(increaseButton);
+
+            productDiv.appendChild(quantityControls);
+
+            let description = document.createElement('p');
+            description.textContent = '설명: ' + product.description;
+            productDiv.appendChild(description);
+
+            let orderButton = document.createElement('button');
+            orderButton.textContent = '주문하기';
+            orderButton.classList.add('order-button');
+
+            // 수량이 0이면 주문하기 버튼을 비활성화합니다.
+            if (product.quantity === 0) {
+                orderButton.disabled = true;
+            } else {
+                orderButton.addEventListener('click', function() {
+                    orderProduct(product);
+                });
+            }
+
+            productDiv.appendChild(orderButton);
+
+            container.appendChild(productDiv);
+        }
+    });
+}
+
+        // 상품의 수량을 업데이트하는 함수입니다.
+        function updateQuantity() {
+            displayProducts(getSearchQuery());
+        }
+
+        // 상품을 주문하는 함수입니다.
+        function orderProduct(product) {
+            // 주문 완료 페이지로 이동합니다.
+            window.location.href = "ordercomplete.html"; // 주문 완료 페이지의 파일명 또는 경로로 변경하세요.
+        }
+
+        // 검색어를 반환하는 함수입니다.
+        function getSearchQuery() {
+            return document.getElementById('searchInput').value;
+        }
+  // Enter 키가 눌렸을 때 검색 실행
+  document.getElementById('searchInput').addEventListener('keypress', function(event) {
+        // Enter 키의 keyCode는 13입니다.
+        if (event.keyCode === 13) {
+            event.preventDefault(); // 기본 동작(폼 제출) 방지
+            search(); // 검색 함수 호출
+        }
+    });
+
+       // 검색 버튼 클릭 시 검색 실행
+    document.getElementById('searchButton').addEventListener('click', search);
+
+    // 검색 실행 함수
+    function search() {
+        var searchQuery = document.getElementById('searchInput').value;
+        // 여기에 검색 실행에 필요한 코드를 작성합니다.
+        displayProducts(searchQuery);
+        // 예를 들어, displayProducts(searchQuery)와 같이 검색 결과를 표시하는 함수를 호출할 수 있습니다.
+    }
+
+// 한 페이지당 표시할 상품 수
+const itemsPerPage = 12;
+// 현재 페이지를 추적하는 변수
+let currentPage = 1;
+
+// 전체 상품 수를 기반으로 총 페이지 수를 계산하는 함수
+function getTotalPages() {
+    return Math.ceil(products.length / itemsPerPage);
+}
+
+// 페이지네이션 버튼을 생성하는 함수
+function createPaginationButtons() {
+    let totalPages = getTotalPages();
+    let paginationContainer = document.getElementById('paginationContainer');
+    paginationContainer.innerHTML = '';
+
+    for (let i = 1; i <= totalPages; i++) {
+        let pageLink = document.createElement('a');
+        pageLink.href = '#';
+        pageLink.classList.add('page-link');
+        pageLink.textContent = i;
+
+        if (i === currentPage) {
+            pageLink.classList.add('active');
+        }
+
+        pageLink.addEventListener('click', function () {
+            currentPage = i;
+            displayProducts(getSearchQuery());
+            createPaginationButtons();
+            history.pushState({page: currentPage}, '', '?page=' + currentPage); // 페이지 이동을 history에 추가
+        });
+
+        paginationContainer.appendChild(pageLink);
+    }
+}
+
+// 페이지 이동 시 발생하는 popstate 이벤트를 처리하여 페이지 번호에 따라 상품을 표시합니다.
+window.addEventListener('popstate', function(event) {
+    if (event.state && event.state.page) {
+        currentPage = event.state.page;
+        displayProducts(getSearchQuery());
+        createPaginationButtons();
+    }
+});
+
+// 상품 정보를 표시하는 함수를 수정하여 페이지에 맞게 표시하도록 변경
+function displayProducts(filter) {
+    let container = document.getElementById('productContainer');
+    container.innerHTML = '';
+
+    let startIndex = (currentPage - 1) * itemsPerPage;
+    let endIndex = startIndex + itemsPerPage;
+
+    let displayedProducts = products.slice(startIndex, endIndex);
+
+    displayedProducts.forEach(function(product) {
+        if (!filter || product.name.toLowerCase().includes(filter.toLowerCase())) {
+            let productDiv = document.createElement('div');
+            productDiv.classList.add('product');
+
+            let image = document.createElement('img');
+            image.src = product.image;
+            productDiv.appendChild(image);
+
+            let name = document.createElement('h2');
+            name.textContent = product.name;
+            productDiv.appendChild(name);
+
+            let price = document.createElement('p');
+            price.textContent = '가격: ' + product.price + '원';
+            productDiv.appendChild(price);
+
+            let quantityControls = document.createElement('div');
+            quantityControls.classList.add('quantity-controls');
+
+            let decreaseButton = document.createElement('button');
+            decreaseButton.textContent = '-';
+            decreaseButton.addEventListener('click', function() {
+                if (product.quantity > 0) {
+                    product.quantity--;
+                    updateQuantity();
+                }
+            });
+            quantityControls.appendChild(decreaseButton);
+
+            let quantityDisplay = document.createElement('span');
+            quantityDisplay.classList.add('quantity-display');
+            quantityDisplay.textContent = product.quantity;
+            quantityControls.appendChild(quantityDisplay);
+
+            let increaseButton = document.createElement('button');
+            increaseButton.textContent = '+';
+            increaseButton.addEventListener('click', function() {
+                product.quantity++;
+                updateQuantity();
+            });
+            quantityControls.appendChild(increaseButton);
+
+            productDiv.appendChild(quantityControls);
+
+            let description = document.createElement('p');
+            description.textContent = '설명: ' + product.description;
+            productDiv.appendChild(description);
+
+            let orderButton = document.createElement('button');
+            orderButton.textContent = '주문하기';
+            orderButton.classList.add('order-button');
+
+            // 수량이 0이면 주문하기 버튼을 비활성화합니다.
+            if (product.quantity === 0) {
+                orderButton.disabled = true;
+            } else {
+                orderButton.addEventListener('click', function() {
+                    orderProduct(product);
+                });
+            }
+
+            productDiv.appendChild(orderButton);
+
+            container.appendChild(productDiv);
+        }
+    });
+}
+
+// 상품 정보를 표시하는 함수를 호출합니다.
+displayProducts();
+// 페이지네이션 버튼을 생성합니다.
+createPaginationButtons();
+
+
+
+        
+    </script>
+</body>
+</html>
