@@ -4,21 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sign-up</title>
-    <link rel="stylesheet" href="sign-up.css" />
+    <link rel="stylesheet" href="login.css" />
   </head>
   <body>
     <form id="sign-up-form">
       <fieldset>
         <legend>회원가입</legend>
         <label for="name">아이디</label>
-        <input type="text" name="name" id="user-id" required max="15" />
+        <input type="text" name="name" id="user-id" required maxlength="15" />
         <label for="password">비밀번호</label>
         <input
           type="password"
           name="password"
           id="user-password"
           required
-          min="6"
+          minlength="6"
         />
         <label for="password-re">비밀번호 확인</label>
         <input
@@ -26,11 +26,15 @@
           name="password-re"
           id="password-re"
           required
-          min="6"
+          minlength="6"
         />
         <button>확인</button>
       </fieldset>
     </form>
+    <span>
+      <a href="./login.html">Login Page</a>
+      <a href="login-btn.html">Home Page</a>
+    </span>
     <script src="sign-up.js"></script>
   </body>
 </html>
