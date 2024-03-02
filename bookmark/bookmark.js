@@ -54,7 +54,6 @@ const renderBookmarks = () => {
       toggleBookmark(animal.ABDM_IDNTFY_NO);
     });
     petBox.appendChild(animalElement);
-
     bookmarkUi(animal.ABDM_IDNTFY_NO);
   });
 };
