@@ -33,7 +33,10 @@
     width: 100%;
     height: 12.4rem;
     border-radius: 10px;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> feature-board
 }
 .img-box img{
     width: 100%;
@@ -90,6 +93,7 @@
     position: absolute;
     bottom: 30%;
     right: 7%;
+<<<<<<< HEAD
     cursor: pointer;
 }
 .blue{
@@ -97,6 +101,8 @@
 }
 .pink{
     color: #F33A71;
+=======
+>>>>>>> feature-board
 }
 @media(max-width:1024px){
 .container{
