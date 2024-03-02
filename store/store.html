@@ -6,34 +6,51 @@
     <title>상품 정보</title>
     <style>
         /* 스타일을 CSS로 정의합니다. */
-        #searchContainer, #productContainer {
+        #searchContainer {  /*검색창 조정*/
             width: 80%; /* 컨테이너의 너비를 설정합니다. */
             margin: 0 auto; /* 가운데 정렬을 위해 좌우 마진을 자동으로 설정합니다. */
             text-align: center; /* 검색창과 버튼을 가운데 정렬합니다. */
         }
 
+        #productContainer { /*상품 목록 조정*/
+            display: flex;
+            flex-wrap: wrap;
+    
+        }
+
         #searchInput {
+            width: 250px; 
+            height: 30px;
             margin-bottom: 10px; /* 검색 입력란 아래에 간격을 줍니다. */
+
         }
 
         #searchButton {
             margin-left: 10px; /* 검색 버튼을 검색 입력란 오른쪽에 간격을 줍니다. */
+            height: 35px;
+            width: 50px;
         }
 
         .product {
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 20px;
-            width: 300px;
+            width: 34%;
             display: inline-block;
             vertical-align: top;
             margin-right: 20px; /* 각 상품 간의 간격을 조정합니다. */
+            position: relative; /* 상대 위치 지정 */
         }
+
+        .product:last-child {
+             margin-right: 0; /* 마지막 상품의 오른쪽 여백을 제거합니다. */
+        }
+        
         .product img {
             width: 100%; /* 이미지를 부모 요소에 맞게 조절합니다. */
             height: auto; /* 이미지의 비율을 유지합니다. */
             max-width: 100%; /* 이미지의 최대 너비를 설정합니다. */
-            max-height: 200px; /* 이미지의 최대 높이를 설정합니다. */
+            max-height: 300px; /* 이미지의 최대 높이를 설정합니다. */
         }
         .quantity-controls {
             margin-top: 10px;
@@ -49,7 +66,7 @@
             width: 100%;
             padding: 10px;
             margin-top: 10px;
-            background-color: yellow;
+            background-color: rgb(255, 235, 153);
             color: black;
             border: none;
             cursor: pointer;
@@ -60,17 +77,67 @@
             text-align: center;
             margin-bottom: 20px;
             font-size: 24px;
-            color: orange  ;
+            color: rgb(255, 235, 153);
             font: bold;
         }
         #paginationContainer {
-    text-align: center; /* pagination 버튼을 가운데 정렬합니다. */
-    margin-top: 10px; /* pagination과 다른 요소 사이의 간격을 설정합니다. */
-   }
-   .page-link {
-    padding: 5px 10px; /* 위, 아래 패딩 5px, 좌우 패딩 10px */
+            text-align: center; /* pagination 버튼을 가운데 정렬합니다. */
+            margin-top: 10px; /* pagination과 다른 요소 사이의 간격을 설정합니다. */
+        }
+        .page-link {
+            padding: 5px 10px; /* 위, 아래 패딩 5px, 좌우 패딩 10px */
 }
 
+        #cartContainer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            z-index: 1;
+            border-radius: 5px;
+            max-width: 300px; /* 장바구니 컨테이너의 최대 너비 설정 */
+           
+};
+/* 미디어 쿼리를 사용하여 반응형으로 조정 */
+@media screen and (max-width: 768px) {
+    #cartContainer {
+        top: auto; /* 자동 위치 설정 */
+        bottom: 20px; /* 페이지 하단에서의 위치 */
+        right: 20px; /* 페이지 오른쪽에서의 위치 */
+    }
+}
+
+#cartItems {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cartItems li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+#totalPrice {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#orderButton {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgb(255, 235, 153);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
 
     </style>
@@ -80,7 +147,7 @@
 
    <!-- 제목 입력란을 가운데 정렬한 컨테이너 -->
 <div class="titleContainer">
-    <h1><a href="store.html" style="text-decoration: none; color: inherit;">펫 스토어</a></h1>
+    <h1><a href="store.html" style="text-decoration: none; color: inherit;">PetTo 스토어</a></h1>
 </div>
 
     <!-- 검색창을 포함한 컨테이너 -->
@@ -96,6 +163,13 @@
 <!-- 페이지네이션을 표시할 컨테이너를 추가합니다. -->
 <div class="pagination" id="paginationContainer"></div>
 
+   <!-- 장바구니 목록을 표시할 요소 -->
+   <div id="cartContainer">
+    <h2>장바구니</h2>
+    <ul id="cartItems"></ul><br>
+    <div id="totalPrice"></div><br>
+    <button id="orderButton">주문하기</button>
+</div>
     <script>
 
         
@@ -271,6 +345,10 @@
             // 추가 상품 정보를 필요에 따라 추가할 수 있습니다.
         ];
 
+// 장바구니 정보를 가져옵니다.
+let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+
         // 상품 정보를 표시하는 함수를 정의합니다.
         function displayProducts(filter) {
     let container = document.getElementById('productContainer');
@@ -321,15 +399,15 @@
 
             productDiv.appendChild(quantityControls);
 
-            let description = document.createElement('p');
+            /* let description = document.createElement('p');
             description.textContent = '설명: ' + product.description;
-            productDiv.appendChild(description);
+            productDiv.appendChild(description); */
 
             let orderButton = document.createElement('button');
-            orderButton.textContent = '주문하기';
+            orderButton.textContent = '장바구니 담기';
             orderButton.classList.add('order-button');
 
-            // 수량이 0이면 주문하기 버튼을 비활성화합니다.
+            // 수량이 0이면 장바구니 담기 버튼을 비활성화합니다.
             if (product.quantity === 0) {
                 orderButton.disabled = true;
             } else {
@@ -350,10 +428,44 @@
             displayProducts(getSearchQuery());
         }
 
-        // 상품을 주문하는 함수입니다.
-        function orderProduct(product) {
-            // 주문 완료 페이지로 이동합니다.
-            window.location.href = "ordercomplete.html"; // 주문 완료 페이지의 파일명 또는 경로로 변경하세요.
+       // 상품을 주문하는 함수입니다.
+       function orderProduct(product) {
+                 let existingItemIndex = cartItems.findIndex(item => item.name === product.name);
+                 let newProduct = Object.assign({}, product); // 상품 객체를 복제하여 새로운 객체 생성
+                      if (existingItemIndex !== -1) {
+                              // 기존에 장바구니에 있는 상품이라면 수량과 가격을 업데이트합니다.
+                           cartItems[existingItemIndex].quantity += product.quantity;
+                          cartItems[existingItemIndex].price += cartItems[existingItemIndex].quantity * newProduct.price 
+                    } else {
+                           // 장바구니에 없는 상품이라면 그대로 추가합니다.
+        
+        cartItems.push(newProduct);
+                   }
+
+    // 로컬 스토리지에 장바구니 정보 저장
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    // 장바구니 목록 업데이트
+    updateCart();
+    // 확인을 위한 메시지
+    alert('상품이 장바구니에 추가되었습니다.');
+}
+
+          // 장바구니 목록을 업데이트하는 함수입니다.
+        function updateCart() {
+            let cartContainer = document.getElementById('cartItems');
+            let totalPrice = 0;
+            cartContainer.innerHTML = '';
+
+            cartItems.forEach(function(item) {
+                let cartItem = document.createElement('li');
+                let itemPrice = item.price * item.quantity;
+                totalPrice += itemPrice;
+                cartItem.textContent = `${item.name} - 수량: ${item.quantity} - 가격: ${itemPrice}원`;
+                cartContainer.appendChild(cartItem);
+            });
+
+            // 총 합계를 표시하는 요소 업데이트
+            document.getElementById('totalPrice').textContent = `총 합계: ${totalPrice}원`;
         }
 
         // 검색어를 반환하는 함수입니다.
@@ -481,15 +593,15 @@ function displayProducts(filter) {
 
             productDiv.appendChild(quantityControls);
 
-            let description = document.createElement('p');
+            /* let description = document.createElement('p');
             description.textContent = '설명: ' + product.description;
-            productDiv.appendChild(description);
+            productDiv.appendChild(description); */
 
             let orderButton = document.createElement('button');
-            orderButton.textContent = '주문하기';
+            orderButton.textContent = '장바구니 담기';
             orderButton.classList.add('order-button');
 
-            // 수량이 0이면 주문하기 버튼을 비활성화합니다.
+            // 수량이 0이면 장바구니 담기 버튼을 비활성화합니다.
             if (product.quantity === 0) {
                 orderButton.disabled = true;
             } else {
@@ -509,10 +621,54 @@ function displayProducts(filter) {
 displayProducts();
 // 페이지네이션 버튼을 생성합니다.
 createPaginationButtons();
+// 장바구니 목록 업데이트
+updateCart();
 
+    // 주문 버튼 클릭 시
+    document.getElementById('orderButton').addEventListener('click', function() {
+            // 장바구니 목록을 비웁니다.
+            cartItems = [];
+            // 로컬 스토리지의 장바구니 정보도 초기화합니다.
+            localStorage.removeItem('cart');
+            // 장바구니 목록을 업데이트합니다.
+            updateCart();
+            // 주문 완료 페이지로 이동합니다.
+            window.location.href = "ordercomplete.html";
+            // 확인을 위한 메시지
+            
+        });
 
-
+//완료
         
+
+// 장바구니 컨테이너 요소를 가져옵니다.
+const cartContainer = document.getElementById('cartContainer');
+
+// 페이지 스크롤 이벤트를 감지하여 장바구니 위치를 조정하는 함수
+function adjustCartPosition() {
+    // 현재 스크롤 위치를 가져옵니다.
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    // 장바구니의 최초 위치를 설정합니다.
+    const initialTop = 20; // 상단 여백
+    // 장바구니가 움직일 수 있는 최대 상단 위치를 설정합니다.
+    const maxTop = window.innerHeight - cartContainer.offsetHeight - 20; // 화면 높이에서 장바구니 높이를 뺀 값
+
+    // 현재 스크롤 위치에 따라 장바구니의 위치를 조정합니다.
+    if (scrollTop > initialTop && scrollTop < maxTop) {
+        cartContainer.style.top = scrollTop + 'px';
+    } else if (scrollTop <= initialTop) {
+        cartContainer.style.top = initialTop + 'px';
+    } else {
+        cartContainer.style.top = maxTop + 'px';
+    }
+}
+
+// 페이지 스크롤 이벤트를 감지하여 adjustCartPosition 함수를 호출합니다.
+window.addEventListener('scroll', adjustCartPosition);
+
+// 초기에도 한 번 실행하여 초기 위치를 설정합니다.
+adjustCartPosition();
+
     </script>
 </body>
 </html>
