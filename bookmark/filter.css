@@ -1,0 +1,7 @@
+.bookmark-btn {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.bookmarked {
+  color: red;
+}
