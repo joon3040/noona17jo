@@ -16,33 +16,6 @@ cat.addEventListener("click", () => getListCat(event));
 species.addEventListener("click", () => getListBySpecies());
 local.addEventListener("click", () => getListByLocal());
 
-const getListBySpecies = async () => {
-  let SPECIES = document.getElementById("input-species").value;
-  let SPECIES1 = "[개] " + SPECIES;
-  let SPECIES2 = "[고양이] " + SPECIES;
-  url = new URL(
-    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SPECIES_NM=${SPECIES1}`
-  );
-  url = new URL(
-    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SPECIES_NM=${SPECIES2}`
-  );
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log("ddd", data);
-  render();
-};
-
-const getListByLocal = async () => {
-  const sigun_NM = document.getElementById("input-local").value;
-  url = new URL(
-    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SIJUN_NM=${sigun_NM}`
-  );
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log("ddd", data);
-  render();
-};
-
 const getPuppy = async () => {
   const response = await fetch(url);
   const data = await response.json();
@@ -57,6 +30,21 @@ const getPuppy = async () => {
   puppyList = filter;
   //   console.log(puppyList);
   render();
+};
+
+const getListBySpecies = async () => {
+  let SPECIES = document.getElementById("input-species").value;
+  url = new URL(
+    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SPECIES_NM=${SPECIES}`
+  );
+  getPuppy();
+};
+const getListByLocal = async () => {
+  const sigun_NM = document.getElementById("input-local").value;
+  url = new URL(
+    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SIGUN_NM=${sigun_NM}`
+  );
+  getPuppy();
 };
 
 // 1.새로운함수에 데이터가 담긴배열을 다 담아준다.
@@ -135,7 +123,7 @@ const render = () => {
         })()}</div>
     </div>
     <div class="address-box">
-      <span>지역:${item.JURISD_INST_NM}</span>
+      <span>지역: ${item.JURISD_INST_NM}</span>
     </div>
     <img class="puppy-icon" src="/list/list-images/puppy-icon.png" alt="">
   </div>`
