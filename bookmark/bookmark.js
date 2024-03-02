@@ -1,6 +1,6 @@
 const apiKey = `50a90492567241f98925e8b285acfa3f`;
 let animals;
-const petBox = document.getElementById('pet-box');
+const petBox = document.getElementById('board');
 
 const getListBookmark = async () => {
   let url = new URL(

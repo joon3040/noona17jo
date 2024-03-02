@@ -1,6 +1,6 @@
 const apiKey = `50a90492567241f98925e8b285acfa3f`;
 let animals;
-const petBox = document.getElementById('bookmarked-pet-box');
+const petBox = document.getElementById('board');
 
 const getListBookmark = async () => {
   let url = new URL(
@@ -31,7 +31,9 @@ const renderBookmarks = () => {
 
   bookmarkedAnimals.forEach((animal) => {
     const animalElement = document.createElement('div');
-    animalElement.innerHTML = `<div class="img-box">
+    animalElement.innerHTML = `
+    <div class="flex-box">
+    <div class="img-box">
       <img src=${
         animal.THUMB_IMAGE_COURS ||
         'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-for-website-design-or-mobile-app-no-photo-available_87543-11093.jpg'
@@ -46,6 +48,7 @@ const renderBookmarks = () => {
       <span id="${animal.ABDM_IDNTFY_NO}" class="bookmark-btn">
         <i class="fa-regular fa-bookmark"></i>
       </span>
+      </div>
     </div>`;
     const bookmarkBtn = animalElement.querySelector('.bookmark-btn');
     bookmarkBtn.addEventListener('click', function () {
