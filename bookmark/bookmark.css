@@ -1,0 +1,11 @@
+.pet-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pet-wrap {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+  width: 15em;
+  height: 18em;
+  margin: 15px 10px;
+}
