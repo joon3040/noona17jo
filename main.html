@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>petTo 펫토 - 입양으로 시작하는 </title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <style>
+header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 720px) {
+  header {
+    justify-content: space-between;
+  }
+}
+header button {
+  border: none;
+  margin: 20px;
+  font-weight: bold;
+}
+.menubar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  margin: 15px 10px 0px 40px;
+  border-bottom: 3px solid rgb(248, 226, 139);
+}
+.menubar button {
+  font-size: 16px;
+}
+@media screen and (max-width: 980px) {
+  .menubar button {
+    margin: 0px 14px 15px 14px;
+  }
+}
+@media screen and (max-width: 720px) {
+  .menubar {
+    display: none;
+  }
+}
+.menu {
+  display: flex;
+  justify-content: center;
+}
+.hamburgerMenu {
+  width: 30px;
+  height: 30px;
+}
+.heart1 {
+  width: 30px;
+  height: 30px;
+}
+.closebtn {
+  width: 35px;
+  height: 35px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: none;
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  margin-left: 60px;
+}
+.side-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.side-menu-list button {
+  margin: 13px;
+  border: none;
+  background: none;
+  width: 150px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.side-menu-list button:hover {
+  background-color: rgb(255, 245, 206);
+}
+#mySideNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 0;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  right: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+.main-banner {
+  text-align: center;
+  font-size: 25px;
+  margin: 70px;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+.select {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+.main-icon {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
+.each {
+  display: flex;
+  flex-direction: column;
+  margin-right: 25px;
+}
+.each span {
+  text-align: center;
+}
+.each button {
+  border: none;
+}
+.main-icon img {
+  margin: 15px;
+}
+.each img:hover {
+  border: 5px solid rgb(255, 235, 153);
+  border-radius: 10%;
+}
+.input-area {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+.input-area button {
+  margin-right: 20px;
+  margin-bottom: 5px;
+  height: 30px;
+  width: 45px;
+  margin-top: 71px;
+}
+.input-area input {
+  margin-right: 15px;
+  height: 25px;
+}
+.species {
+  padding: 50px 0px 50px 30px;
+  display: flex;
+  flex-direction: column;
+}
+.local {
+  padding: 50px 0px 50px 0px;
+  display: flex;
+  flex-direction: column;
+}
+.container1 {
+  display: flex;
+  flex-direction: column;
+  max-width: 61rem;
+  margin: 0px auto;
+  padding: 0px 1.5rem;
+  min-height: 100vh;
+}
+.grid-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5rem 2rem;
+  padding: 1.25rem 0.4rem;
+}
+.pet-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.3s ease-in-out 0s;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+  width: 100%;
+  height: 100%;
+}
+.flex-box {
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 1.1rem 0.9rem;
+  width: 100%;
+  height: 100%;
+}
+.img-box {
+  width: 100%;
+  height: 12.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.img-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.state {
+  width: fit-content;
+  padding: 0.2rem 1rem;
+  margin: 0.65rem 0px;
+  font-size: 0.68rem;
+  line-height: 0.8rem;
+  font-weight: 600;
+  background-color: rgb(255, 235, 153);
+  border-radius: 21px;
+  position: relative;
+}
+.kind-age {
+  margin-bottom: 0.3rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.gender {
+  display: flex;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.15px;
+}
+.address-box {
+  padding: 0.8rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 600;
+  color: rgb(134, 134, 136);
+  border-top: 1px solid rgb(228, 228, 230);
+}
+.puppy-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+}
+.heart {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 30%;
+  right: 7%;
+  cursor: pointer;
+}
+.blue {
+  color: #67A8F4;
+}
+.pink {
+  color: #F33A71;
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 80rem;
+  }
+  .grid-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+    padding: 1.25rem 0.4rem;
+  }
+}
+@media (max-width: 820px) {
+  .container1 {
+    max-width: 100rem;
+  }
+}
+@media (max-width: 770px) {
+  .container1 {
+    max-width: 100rem;
+  }
+  .grid-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 2rem;
+    /* padding: 1.25rem 0.4rem; */
+  }
+}
+@media (max-width: 430px) {
+  .container1 {
+    max-width: 20rem;
+  }
+  .grid-box {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1.25rem 0.4rem;
+  }
+}
+
+    </style>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="side-menu" id="mySideNav">
+        <button class="closebtn" onclick="closeNav()">
+          <img src="img/rectangle-xmark-solid.svg">
+        </button>
+      <div class="side-menu-list" id="menu-list">
+        <button>홈</button>
+        <button>보호소 정보</button>
+        <button>자원봉사</button>
+        <button>나의 관심동물</button>
+        <button>쇼핑</button>
+        <button>게시판</button>
+      </div>
+    </div>
+    <div class="wrap">
+    <div id="container">
+        <header>
+            <img class="main-logo" src="img/main-logo.png">
+        <section class="menubar">
+            <button>홈</button>
+            <button>보호소 정보</button>
+            <button>자원봉사</button>
+            <button>쇼핑</button>
+            <button>게시판</button>
+            <button>로그인</button>
+        </section>
+        <div class="menu">
+            <button class="heart1"><img src="img/heart-solid.svg"></button>
+            <button class="hamburgerMenu" onclick="openNav()"><img src="img/bars-solid.svg"></button>
+        </div>
+        </header>
+        <div class="main-banner">n마리의 아이들이 보호자를 기다리고 있어요 </div>
+        <div class="select">
+        <div class="each">
+            <button id="dog-icon"><img src="img/main-dog.png"></button><span>강아지</span>
+        </div>
+        <div class="each">
+            <button id="cat-icon"><img src="img/main-cat.png"></button><span>고양이</span>
+        </div>
+        <div class="input-area">
+            <div class="species" >
+                <span>품종</span>
+                <input id="input-species" type="text">
+            </div>
+            <button id="button-species">선택</button>
+            <div class="local">
+                <span>지역</span>
+                <input id="input-local" type="text">
+            </div>
+            <button id="button-local">선택</button>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="container1">
+        <section id="board" class="grid-box">
+          <div class="pet-box">
+              <div class="flex-box">
+                  <div class="img-box">
+                      <img src="/list/list-images/puppy.jpeg" alt="" />
+                  </div>
+                <div class="state">보호중
+              </div>
+              <img class="heart" src="/list/list-images/heart.png" alt="">
+                <div class="kind-age">강아지 | 1살</div>
+                <div class="gender"></div>
+              </div>
+              <div class="address-box">
+                <span>지역:경상북도 문경시</span>
+              </div>
+              <img class="puppy-icon" src="/list/list-images/puppy-icon.png" alt="">
+              </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="shoppingPage" style="display: none;"> 
+        <!-- 쇼핑 페이지의 내용을 추가합니다.//#준형 -->
+        <h2>쇼핑 페이지</h2>
+        <p>쇼핑 페이지의 내용을 여기에 추가하세요.</p>
+    </div>
+
+    
+    <script src="main.js"></script>
+    <script>
+        // 유기동물을 필터를 통해 나에게 적합한 리스트를 확인할 수 있다
+// 강아지와 고양이 중에 무엇을 선택할 지 정할 수 있다
+// 지역과 품종을 선택할 수 있다. -> 몇 마리의 동물들이 있는 지 알 수 있다
+let puppyList = [];
+let pop = [];
+const apiKey = `50a90492567241f98925e8b285acfa3f`;
+const dog = document.getElementById("dog-icon");
+const cat = document.getElementById("cat-icon");
+const species = document.getElementById("button-species");
+const local = document.getElementById("button-local");
+let url = new URL(
+  `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}`
+);
+dog.addEventListener("click", () => getListDog(event));
+cat.addEventListener("click", () => getListCat(event));
+species.addEventListener("click", () => getListBySpecies());
+local.addEventListener("click", () => getListByLocal());
+
+const getListBySpecies = async () => {
+  let SPECIES = document.getElementById("input-species").value;
+  let SPECIES1 = "[개] " + SPECIES;
+  let SPECIES2 = "[고양이] " + SPECIES;
+  url = new URL(
+    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SPECIES_NM=${SPECIES1}`
+  );
+  url = new URL(
+    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SPECIES_NM=${SPECIES2}`
+  );
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log("ddd", data);
+  render();
+};
+
+const getListByLocal = async () => {
+  const sigun_NM = document.getElementById("input-local").value;
+  url = new URL(
+    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SIJUN_NM=${sigun_NM}`
+  );
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log("ddd", data);
+  render();
+};
+
+const getPuppy = async () => {
+  const response = await fetch(url);
+  const data = await response.json();
+  animal = data.AbdmAnimalProtect;
+  pop = animal[1].row.filter((data) => {
+    return data.SEX_NM == "Q";
+  });
+  //   console.log(pop);
+  filter = animal[1].row.filter(
+    (element) => element.SEX_NM !== "Q" && element.STATE_NM == "보호중"
+  );
+  puppyList = filter;
+  //   console.log(puppyList);
+  render();
+};
+
+// 1.새로운함수에 데이터가 담긴배열을 다 담아준다.
+// 2. 부모태그에 데이터가담긴변수 dom을 넣어준다.
+const render = () => {
+  let newHTML = puppyList
+    .map(
+      (item) =>
+        ` <div class="pet-box">
+    <div class="flex-box">
+        <div class="img-box">
+            <img src="${
+              item.IMAGE_COURS ||
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqEWgS0uxxEYJ0PsOb2OgwyWvC0Gjp8NUdPw&usqp=CAU"
+            }" alt="" />
+        </div>
+      <div class="state">${item.STATE_NM}
+    </div>
+    <img class="heart" src="/list/list-images/heart.png" alt="">
+      <div class="kind-age">${item.SPECIES_NM.replace(
+        "[개]",
+        "[강아지]"
+      )} | ${(() => {
+          if (parseInt(item.AGE_INFO) == 2024) {
+            return "1살 미만";
+          } else if (parseInt(item.AGE_INFO) == 2023) {
+            return "1살";
+          } else if (parseInt(item.AGE_INFO) == 2022) {
+            return "2살";
+          } else if (parseInt(item.AGE_INFO) == 2021) {
+            return "3살";
+          } else if (parseInt(item.AGE_INFO) == 2020) {
+            return "4살";
+          } else if (parseInt(item.AGE_INFO) == 2019) {
+            return "5살";
+          } else if (parseInt(item.AGE_INFO) == 2018) {
+            return "6살";
+          } else if (parseInt(item.AGE_INFO) == 2017) {
+            return "7살";
+          } else if (parseInt(item.AGE_INFO) == 2016) {
+            return "8살";
+          } else if (parseInt(item.AGE_INFO) == 2015) {
+            return "9살";
+          } else if (parseInt(item.AGE_INFO) == 2014) {
+            return "10살";
+          } else if (parseInt(item.AGE_INFO) == 2013) {
+            return "11살";
+          } else if (parseInt(item.AGE_INFO) == 2012) {
+            return "12살";
+          } else if (parseInt(item.AGE_INFO) == 2011) {
+            return "13살";
+          } else if (parseInt(item.AGE_INFO) == 2010) {
+            return "14살";
+          } else if (parseInt(item.AGE_INFO) == 2009) {
+            return "15살";
+          } else if (parseInt(item.AGE_INFO) == 2008) {
+            return "16살";
+          } else if (parseInt(item.AGE_INFO) == 2007) {
+            return "17살";
+          } else if (parseInt(item.AGE_INFO) == 2006) {
+            return "18살";
+          }
+        })()}</div>
+      <div id="gender" class="gender">${
+        item.SEX_NM == "M"
+          ? item.SEX_NM.replace("M", "남아")
+          : item.SEX_NM.replace("F", "여아")
+      }  · ${(() => {
+          if (item.NEUT_YN == "Y") {
+            return "중성화 완료";
+          } else if (item.NEUT_YN == "N") {
+            return "중성화 미완료";
+          } else {
+            return "중성화 알수없음";
+          }
+        })()}</div>
+    </div>
+    <div class="address-box">
+      <span>지역:${item.JURISD_INST_NM}</span>
+    </div>
+    <img class="puppy-icon" src="/list/list-images/puppy-icon.png" alt="">
+  </div>`
+    )
+    .join("");
+  document.getElementById("board").innerHTML = newHTML;
+};
+getPuppy();
+//메뉴바 열고 닫기
+const openNav = () => {
+  document.getElementById("mySideNav").style.width = "270px";
+};
+
+const closeNav = () => {
+  document.getElementById("mySideNav").style.width = "0px";
+};
+
+// 쇼핑 메뉴를 클릭하면 해당 쇼핑 페이지를 표시합니다. (#준형)
+document.getElementById('shoppingMenu').addEventListener('click', function() {
+    document.getElementById('shoppingPage').style.display = 'block';
+});
+</script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>
