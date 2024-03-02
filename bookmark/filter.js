@@ -1,6 +1,6 @@
 const apiKey = `50a90492567241f98925e8b285acfa3f`;
 let animals;
-const petBox = document.getElementById('pet-box');
+const petBox = document.getElementById('bookmarked-pet-box');
 
 const getListBookmark = async () => {
   let url = new URL(
@@ -10,6 +10,7 @@ const getListBookmark = async () => {
   const response = await fetch(url);
   const data = await response.json();
   animals = data.AbdmAnimalProtect[1].row;
+  console.log(animals);
   renderBookmarks();
 };
 const bookmarkUi = (bookmarked) => {
@@ -19,14 +20,14 @@ const bookmarkUi = (bookmarked) => {
   );
 
   if (bookmarks.includes(bookmarked)) {
-    bookmarkBtn.classList.add('bookmarked');
+    bookmarkBtn.style.color = 'red';
   } else {
-    bookmarkBtn.classList.remove('bookmarked');
+    bookmarkBtn.style.color = 'yellow';
   }
 };
 
 const renderBookmarks = () => {
-  const bookmarkedAnimals = getBookmarkedAnimals();
+  const bookmarkedAnimals = getBookmarkAnimals();
 
   bookmarkedAnimals.forEach((animal) => {
     const animalElement = document.createElement('div');
@@ -49,10 +50,10 @@ const renderBookmarks = () => {
     const bookmarkBtn = animalElement.querySelector('.bookmark-btn');
     bookmarkBtn.addEventListener('click', function () {
       toggleBookmark(animal.ABDM_IDNTFY_NO);
+      renderBookmarks();
     });
+    // bookmarkUi(animal.ABDM_IDNTFY_NO);
     petBox.appendChild(animalElement);
-
-    bookmarkUi(animal.ABDM_IDNTFY_NO);
   });
 };
 
@@ -67,7 +68,7 @@ const toggleBookmark = (idntfy) => {
   }
   saveBookmarks(bookmarked);
 
-  bookmarkUi(bookmarked);
+  // bookmarkUi(idntfy);
 };
 
 // 로컬에 있는 것 불러오기
@@ -80,7 +81,7 @@ const saveBookmarks = (bookmarked) => {
   localStorage.setItem('bookmarks', JSON.stringify(bookmarked));
 };
 
-const getBookmarkAniamls = () => {
+const getBookmarkAnimals = () => {
   const bookmarkedIds = getBookMarks();
   return animals.filter((animal) =>
     bookmarkedIds.includes(animal.ABDM_IDNTFY_NO)
