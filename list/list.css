@@ -105,6 +105,10 @@
     background-color: rgb(255, 235, 153);
     color: #fff;
 }
+.pagination-box{
+    display: flex;
+    justify-content: center;
+}
 @media(max-width:1024px){
 .container{
     max-width: 80rem;
