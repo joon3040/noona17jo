@@ -54,10 +54,6 @@ const renderBookmarks = () => {
       toggleBookmark(animal.ABDM_IDNTFY_NO);
     });
     petBox.appendChild(animalElement);
-<<<<<<< HEAD
-=======
-
->>>>>>> feature-board
     bookmarkUi(animal.ABDM_IDNTFY_NO);
   });
 };

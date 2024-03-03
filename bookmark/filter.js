@@ -10,10 +10,7 @@ const getListBookmark = async () => {
   const response = await fetch(url);
   const data = await response.json();
   animals = data.AbdmAnimalProtect[1].row;
-<<<<<<< HEAD
   console.log(animals);
-=======
->>>>>>> feature-board
   renderBookmarks();
 };
 const bookmarkUi = (bookmarked) => {
@@ -23,24 +20,14 @@ const bookmarkUi = (bookmarked) => {
   );
 
   if (bookmarks.includes(bookmarked)) {
-<<<<<<< HEAD
     bookmarkBtn.style.color = 'red';
   } else {
     bookmarkBtn.style.color = 'yellow';
-=======
-    bookmarkBtn.classList.add('bookmarked');
-  } else {
-    bookmarkBtn.classList.remove('bookmarked');
->>>>>>> feature-board
   }
 };
 
 const renderBookmarks = () => {
-<<<<<<< HEAD
   const bookmarkedAnimals = getBookmarkAnimals();
-=======
-  const bookmarkedAnimals = getBookmarkedAnimals();
->>>>>>> feature-board
 
   bookmarkedAnimals.forEach((animal) => {
     const animalElement = document.createElement('div');
@@ -66,17 +53,10 @@ const renderBookmarks = () => {
     const bookmarkBtn = animalElement.querySelector('.bookmark-btn');
     bookmarkBtn.addEventListener('click', function () {
       toggleBookmark(animal.ABDM_IDNTFY_NO);
-<<<<<<< HEAD
       renderBookmarks();
     });
     // bookmarkUi(animal.ABDM_IDNTFY_NO);
     petBox.appendChild(animalElement);
-=======
-    });
-    petBox.appendChild(animalElement);
-
-    bookmarkUi(animal.ABDM_IDNTFY_NO);
->>>>>>> feature-board
   });
 };
 
@@ -91,11 +71,7 @@ const toggleBookmark = (idntfy) => {
   }
   saveBookmarks(bookmarked);
 
-<<<<<<< HEAD
   // bookmarkUi(idntfy);
-=======
-  bookmarkUi(bookmarked);
->>>>>>> feature-board
 };
 
 // 로컬에 있는 것 불러오기
@@ -108,11 +84,7 @@ const saveBookmarks = (bookmarked) => {
   localStorage.setItem('bookmarks', JSON.stringify(bookmarked));
 };
 
-<<<<<<< HEAD
 const getBookmarkAnimals = () => {
-=======
-const getBookmarkAniamls = () => {
->>>>>>> feature-board
   const bookmarkedIds = getBookMarks();
   return animals.filter((animal) =>
     bookmarkedIds.includes(animal.ABDM_IDNTFY_NO)
