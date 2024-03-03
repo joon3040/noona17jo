@@ -108,3 +108,7 @@ header button {
   display: flex;
   justify-content: center;
 }
+a {
+  text-decoration-line: none;
+  color: black;
+}
