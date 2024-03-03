@@ -321,7 +321,7 @@ header button {
         <button>보호소 정보</button>
         <button>자원봉사</button>
         <button>나의 관심동물</button>
-        <button>쇼핑</button>
+        <button><a href="store/store.html" style="text-decoration: none; color: inherit;">쇼핑</a></button> <!-- #준형 -->
         <button>게시판</button>
       </div>
     </div>
@@ -333,7 +333,8 @@ header button {
             <button>홈</button>
             <button>보호소 정보</button>
             <button>자원봉사</button>
-            <button>쇼핑</button>
+            <button><a href="store/store.html" style="text-decoration: none; color: inherit;">쇼핑</a></button>  <!-- #준형 -->
+            
             <button>게시판</button>
             <button>로그인</button>
         </section>
@@ -387,11 +388,7 @@ header button {
         </section>
     </div>
 
-    <div id="shoppingPage" style="display: none;"> 
-        <!-- 쇼핑 페이지의 내용을 추가합니다.//#준형 -->
-        <h2>쇼핑 페이지</h2>
-        <p>쇼핑 페이지의 내용을 여기에 추가하세요.</p>
-    </div>
+   
 
     
     <script src="main.js"></script>
@@ -552,8 +549,12 @@ const closeNav = () => {
 };
 
 // 쇼핑 메뉴를 클릭하면 해당 쇼핑 페이지를 표시합니다. (#준형)
-document.getElementById('shoppingMenu').addEventListener('click', function() {
-    document.getElementById('shoppingPage').style.display = 'block';
+document.getElementById('shoppingButton').addEventListener('click', function() {
+    // 새 페이지로의 URL을 지정합니다.
+    let shoppingPageURL = 'https://www.naver.com'; // 여기에 쇼핑 페이지의 URL을 입력하세요.
+
+    // 새 페이지로 이동합니다.
+    window.location.href = shoppingPageURL;
 });
 </script>
     <script
