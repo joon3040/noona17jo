@@ -104,7 +104,7 @@ header button {
   margin-bottom: 1em;
   border-bottom: 1px solid lightgray;
 }
-.flex-box {
+#flex-box {
   display: flex;
   justify-content: center;
 }
