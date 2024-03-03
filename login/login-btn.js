@@ -4,7 +4,7 @@ const saveUserId = localStorage.getItem('userid');
 const saveIsLogin = localStorage.getItem('islogin');
 
 const MoveLoginPage = () => {
-  const LoginPageURL = './login.html';
+  const LoginPageURL = '../index.html';
   window.location.href = LoginPageURL;
 };
 
