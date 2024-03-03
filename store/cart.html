@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>장바구니</h1>
+        <ul id="cart-items"></ul>
+        <button onclick="clearCart()">장바구니 비우기</button>
+      </div>
+      
+    <script>
+// 장바구니에 아이템 추가
+function addToCart(itemName, itemPrice) {
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  var item = {
+    name: itemName,
+    price: itemPrice
+  };
+
+  cart.push(item);
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  displayCart();
+}
+
+// 장바구니 비우기
+function clearCart() {
+  localStorage.removeItem('cart');
+  displayCart();
+}
+
+// 장바구니 내용 화면에 표시
+function displayCart() {
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  var cartList = document.getElementById('cart-items');
+  cartList.innerHTML = '';
+
+  cart.forEach(function(item) {
+    var listItem = document.createElement('li');
+    listItem.textContent = item.name + ' - $' + item.price;
+    cartList.appendChild(listItem);
+  });
+}
+
+// 페이지 로드 시 장바구니 내용 표시
+window.onload = function() {
+  displayCart();
+};
+    </script>
+</body>
+</html>

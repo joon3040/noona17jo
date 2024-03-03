@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .container{
     max-width: 61rem;
     margin: 0px auto;
@@ -33,6 +34,10 @@
     width: 100%;
     height: 12.4rem;
     border-radius: 10px;
+<<<<<<< HEAD
+    cursor: pointer;
+=======
+>>>>>>> feature-board
 }
 .img-box img{
     width: 100%;
@@ -89,6 +94,23 @@
     position: absolute;
     bottom: 30%;
     right: 7%;
+<<<<<<< HEAD
+    cursor: pointer;
+}
+.blue{
+    color: #67A8F4;
+}
+.pink{
+    color: #F33A71;
+=======
+>>>>>>> feature-board
+}
+.page-color{
+    color: #000;
+}
+.active{
+    background-color: rgb(255, 235, 153);
+    color: #fff;
 }
 @media(max-width:1024px){
 .container{
@@ -127,3 +149,5 @@
         padding: 1.25rem 0.4rem;
     }   
 }
+=======
+>>>>>>> feature-board
