@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .container{
     max-width: 61rem;
     margin: 0px auto;
@@ -34,10 +33,7 @@
     width: 100%;
     height: 12.4rem;
     border-radius: 10px;
-<<<<<<< HEAD
     cursor: pointer;
-=======
->>>>>>> feature-board
 }
 .img-box img{
     width: 100%;
@@ -94,7 +90,6 @@
     position: absolute;
     bottom: 30%;
     right: 7%;
-<<<<<<< HEAD
     cursor: pointer;
 }
 .blue{
@@ -102,8 +97,6 @@
 }
 .pink{
     color: #F33A71;
-=======
->>>>>>> feature-board
 }
 .page-color{
     color: #000;
@@ -149,5 +142,3 @@
         padding: 1.25rem 0.4rem;
     }   
 }
-=======
->>>>>>> feature-board

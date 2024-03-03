@@ -13,40 +13,6 @@ const groupSize = 5;
 
 // 1.api를 불러온다.
 // 2.데이터에 접근해 배열에 담는다.
-=======
-dog.addEventListener("click", () => getListDog(event));
-cat.addEventListener("click", () => getListCat(event));
-species.addEventListener("click", () => getListBySpecies());
-local.addEventListener("click", () => getListByLocal());
-
-const getListBySpecies = async () => {
-  let SPECIES = document.getElementById("input-species").value;
-  let SPECIES1 = "[개] " + SPECIES;
-  let SPECIES2 = "[고양이] " + SPECIES;
-  url = new URL(
-    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SPECIES_NM=${SPECIES1}`
-  );
-  url = new URL(
-    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SPECIES_NM=${SPECIES2}`
-  );
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log("ddd", data);
-  render();
-};
-
-const getListByLocal = async () => {
-  const sigun_NM = document.getElementById("input-local").value;
-  url = new URL(
-    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}&SIJUN_NM=${sigun_NM}`
-  );
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log("ddd", data);
-  render();
-};
-
->>>>>>> 8d7f9562124c20e26259617808d74546abf8ffb1:main.js
 const getPuppy = async () => {
     url.searchParams.set("pIndex",page); // %page = page
     url.searchParams.set("pSize",pageSize)
