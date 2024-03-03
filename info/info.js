@@ -1,13 +1,16 @@
 const apiKey = `50a90492567241f98925e8b285acfa3f`;
 let infoList = [];
 let url = new URL(
-  `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}`
+  `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&key=${apiKey}`
 );
 
 const getInfoList = async () => {
   const response = await fetch(url);
   const data = await response.json();
   console.log("ddd", data);
+  animal = data.AbdmAnimalProtect;
+  let list =  animal[1].row;
+  infoList = list;
   render();
 };
 
@@ -21,8 +24,6 @@ const render = () => {
     </div>
     <div class="col-lg-4">
          <h2 id="institution">${item.JURISD_INST_NM}</h2>
-         <div id="name">${item.CHRGPSN_NM}</div>
-         <div id="call">${item.CHRGPSN_CONTCT_NO}</div>
     </div>
 </div>`
     )
