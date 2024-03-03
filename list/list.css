@@ -105,6 +105,13 @@
 =======
 >>>>>>> feature-board
 }
+.page-color{
+    color: #000;
+}
+.active{
+    background-color: rgb(255, 235, 153);
+    color: #fff;
+}
 @media(max-width:1024px){
 .container{
     max-width: 80rem;
