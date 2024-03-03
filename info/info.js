@@ -18,12 +18,12 @@ const render = () => {
   let infoHTML = infoList
     .map(
       (item) => `
-<div id="flex-box" class="row item">
+<div id="flex-box">
     <div class="col-lg-4">
-        <h1 id="info-box">${item.SHTER_NM}</h1>
+        <h5 id="info-box">${item.SHTER_NM}</h1>
     </div>
     <div class="col-lg-4">
-         <h2 id="institution">${item.JURISD_INST_NM}</h2>
+         <h6 id="institution">${item.JURISD_INST_NM}</h2>
     </div>
 </div>`
     )
