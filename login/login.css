@@ -10,12 +10,14 @@ body {
 }
 
 #sign-up-form {
+  width: 20em;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
   border-radius: 10px;
   padding: 30px;
   margin-bottom: 20px;
 }
 #login-form {
+  width: 20em;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
   border-radius: 10px;
   padding: 30px;
@@ -23,7 +25,7 @@ body {
 }
 fieldset {
   border: none;
-  padding: 0;
+  padding-left: 30px;
   margin: 0;
 }
 legend {
@@ -66,12 +68,10 @@ a:hover {
   color: rgb(255, 235, 153);
 }
 
-/* #last-box {
+#last-box {
   margin-top: 10px;
   padding: 50px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
-  display: flex;
-  flex-direction: column;
 }
 #last-box button {
   width: 100px;
@@ -81,4 +81,19 @@ a:hover {
 #last-box button:last-child:hover {
   background-color: black;
   color: white;
-} */
+}
+
+@media (max-width: 600px) {
+  #sign-up-form,
+  #login-form {
+    width: 90%;
+  }
+  input,
+  button {
+    width: 100%;
+  }
+}
+.mismatch-message {
+  color: gray;
+  width: 90%;
+}

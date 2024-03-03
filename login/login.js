@@ -5,6 +5,7 @@ const signUpMove = document.getElementById('sign-up-move');
 const unregister = document.getElementById('unregister');
 const logout = document.getElementById('log-out');
 const lastBox = document.getElementById('last-box');
+const misMatchMessage = document.querySelector('.mismatch-message');
 
 const HIDDEN_CLASS = 'hidden';
 const USERID_KEY = 'userid';
@@ -49,7 +50,7 @@ const loginSubmit = (event) => {
   if (saveUserId == userIdValue && saveUserPassword == userPasswordValue) {
     window.location.href = HomePageURL;
   } else {
-    alert('존재하지 않는 아이디거나, 비밀번호가 틀렸습니다.');
+    misMatchMessage.classList.remove('hidden');
   }
 };
 

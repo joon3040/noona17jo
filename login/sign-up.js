@@ -2,6 +2,7 @@ const signUpForm = document.getElementById('sign-up-form');
 const userID = document.getElementById('user-id');
 const userPassword = document.getElementById('user-password');
 const userPasswordRe = document.getElementById('password-re');
+const misMatchMessage = document.querySelector('.mismatch-message');
 
 // 회원 가입 폼
 const signUpSubmit = (event) => {
@@ -12,7 +13,7 @@ const signUpSubmit = (event) => {
   localStorage.setItem('islogin', 'true');
 
   if (userPasswordValue !== userPasswordReValue) {
-    alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요');
+    misMatchMessage.classList.remove('hidden');
     return;
   }
 

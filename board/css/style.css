@@ -7,6 +7,26 @@ html{
     font-size: 10px;
 }
 
+.side-menu-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+    border-bottom: 3px solid rgb(248,226,139);
+  }
+
+.side-menu-list button {
+    margin: 13px;
+    border: none;
+    background: none;
+    width: 150px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+.side-menu-list button:hover {
+    background-color: rgb(255, 245, 206);
+  }  
+
 ul, li{
     list-style: none;
 }
@@ -237,6 +257,16 @@ a{
     border-bottom: 1px solid #000;
 }
 
+.board_write .cont textarea{
+    display: block;
+    width: 100%;
+    height: 300px;
+    padding: 15px;
+    box-sizing: border-box;
+    border:0;
+    resize:vertical;
+}
+
 .board_write .title dl{
     font-size: 0;
 }
@@ -287,3 +317,65 @@ a{
     resize:vertical;
 }
 
+
+/* ---------------- */
+
+#mySideNav {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0; /* 우측 정렬 */
+    background-color:   white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  /* 닫기 버튼의 스타일 */
+  .closebtn {
+    position: absolute;
+    top: 0;
+    left: 25px; /* 우측으로부터의 거리를 조정 */
+    font-size: 36px;
+    margin-right: 50px; /* 닫기 버튼 우측 마진 */
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* 메뉴 항목의 스타일 */
+  .menu-item {
+    padding: 1px 40px 20px 1px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    display: block;
+    transition: 0.3s;
+    text-align: right;
+  }
+  
+  /* 메뉴 항목에 마우스 호버 시 스타일 */
+  .menu-item:hover {
+    color: #f1f1f1;
+  }
+
+  .button-container {
+    text-align: right; 
+    padding: 1px 10px 10px 1px;
+  }
+
+  .button-container button {
+    border: none;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    padding: 0; /* 내부 여백 제거 */
+    cursor: pointer;
+  }
+  
+  .button-container button i {
+    font-size: 24px; /* 아이콘의 크기 조절 */
+  }
+
+  /* --- */
+ 
