@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- <div class="side-menu" id="mySideNav">
+    <div class="side-menu" id="mySideNav">
         <button class="closebtn" onclick="closeNav()">
           <img src="img/rectangle-xmark-solid.svg">
         </button>
@@ -24,35 +24,22 @@
         <button><a href="" target="_blank">나의 관심동물</a></button>
         <button><a href="store/store.html" target="_blank">쇼핑</a></button>
         <button><a href="board/board.html" target="_blank">게시판</a></button>
+        <button id="login-user">로그인</button>
       </div>
-    </div> -->
-    <div class="side-menu" id="mySideNav">
-      <button class="closebtn" onclick="closeNav()">
-        <img src="img/rectangle-xmark-solid.svg">
-      </button>
-    <ul class="side-menu-list" id="menu-list">
-      <li><a href="index.html" target="_blank">홈</a></li>
-      <li><a href="info/info.html" target="_blank">보호소 정보</a></li>
-      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSffDAeAZNgbxOjwFOnRFfm0c_nfqP-wWch2uCOKpj8KkXnE6A/viewform?usp=sf_link" target="_blank">자원봉사</a></li>
-      <li><a href="" target="_blank">나의 관심동물</a></li>
-      <li><a href="store/store.html" target="_blank">쇼핑</a></li>
-      <li><a href="board/board.html" target="_blank">게시판</a></li>
-      <button id="login-user">로그인</button>
-    </ul>
-  </div>
+    </div>
     <div class="wrap">
     <div id="container">
         <header>
             <img class="main-logo" src="img/main-logo.png">
-        <ul class="menubar">
-        <li><a href="index.html" target="_blank">홈</a></li>
-        <li><a href="info/info.html" target="_blank">보호소 정보</a></li>
-        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSffDAeAZNgbxOjwFOnRFfm0c_nfqP-wWch2uCOKpj8KkXnE6A/viewform?usp=sf_link" target="_blank">자원봉사</a></li>
-        <li><a href="" target="_blank">나의 관심동물</a></li>
-        <li><a href="store/store.html" target="_blank">쇼핑</a></li>
-        <li><a href="board/board.html" target="_blank">게시판</a></li>
+        <section class="menubar">
+        <button><a href="index.html" target="_blank">홈</a></button>
+        <button><a href="info/info.html" target="_blank">보호소 정보</a></button>
+        <button><a href="https://docs.google.com/forms/d/e/1FAIpQLSffDAeAZNgbxOjwFOnRFfm0c_nfqP-wWch2uCOKpj8KkXnE6A/viewform?usp=sf_link" target="_blank">자원봉사</a></button>
+        <button><a href="" target="_blank">나의 관심동물</a></button>
+        <button><a href="store/store.html" target="_blank">쇼핑</a></button>
+        <button><a href="board/board.html" target="_blank">게시판</a></button>
         <button id="login-user">로그인</button>
-        </ul>
+        </section>
         <div class="menu">
             <button class="heart1"><img src="img/heart-solid.svg"></button>
             <button class="hamburgerMenu" onclick="openNav()"><img src="img/bars-solid.svg"></button>
@@ -108,7 +95,7 @@
         </nav>
     </div>  
     <script src="main.js"></script>
-    <script src="./login/login-btn.js"></script>
+    <script src="/login/login-btn.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
