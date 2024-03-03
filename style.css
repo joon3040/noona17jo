@@ -295,3 +295,7 @@ header button {
     padding: 1.25rem 0.4rem;
   }
 }
+a {
+  text-decoration-line: none;
+  color: black;
+}
