@@ -144,7 +144,6 @@ const paginationRender = () => {
   let totalPages = Math.ceil(totalResults / pageSize); //505?
   const pageGroup = Math.ceil(page / groupSize); //1
   let lastPage = pageGroup * groupSize; //5
-  console.log(totalPages);
   if(lastPage > totalPages){
       lastPage = totalPages;
   }
@@ -169,7 +168,6 @@ const paginationRender = () => {
 };
 
 const moveToPage = (pageNum) => {
-  console.log(pageNum);
   page = pageNum;
   getPuppy();
 };
