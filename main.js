@@ -7,25 +7,37 @@ const apiKey = `50a90492567241f98925e8b285acfa3f`;
 const species = document.getElementById("button-species");
 const local = document.getElementById("button-local");
 let url = new URL(
-  `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&pSize=150&key=${apiKey}`
+  `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&key=${apiKey}`
 );
+let totalResults = 0;
+let page = 1;
+let pageSize = 20;
+const groupSize = 5;
 species.addEventListener("click", () => getListBySpecies());
 local.addEventListener("click", () => getListByLocal());
 
 const getPuppy = async () => {
+  url.searchParams.set("pIndex", page); // %page = page
+  url.searchParams.set("pSize", pageSize);
   const response = await fetch(url);
   const data = await response.json();
   animal = data.AbdmAnimalProtect;
   pop = animal[1].row.filter((data) => {
     return data.SEX_NM == "Q";
   });
-  //   console.log(pop);
   filter = animal[1].row.filter(
     (element) => element.SEX_NM !== "Q" && element.STATE_NM == "보호중"
   );
   puppyList = filter;
-  //   console.log(puppyList);
+  totalResults = data.AbdmAnimalProtect[0].head[0].list_total_count;
   render();
+  paginationRender();
+};
+const getLatestPuppy = async () => {
+  url = new URL(
+    `https://openapi.gg.go.kr/AbdmAnimalProtect?type=json&pIndex=4&key=${apiKey}`
+  );
+  getPuppy();
 };
 
 const getListBySpecies = async () => {
@@ -127,7 +139,42 @@ const render = () => {
     .join("");
   document.getElementById("board").innerHTML = newHTML;
 };
-getPuppy();
+const paginationRender = () => {
+  let paginationHTML = ``;
+  let totalPages = Math.ceil(totalResults / pageSize); //505?
+  const pageGroup = Math.ceil(page / groupSize); //1
+  let lastPage = pageGroup * groupSize; //5
+  console.log(totalPages);
+  if(lastPage > totalPages){
+      lastPage = totalPages;
+  }
+  const firstPage =
+    lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+  if (firstPage >= 6) {
+    paginationHTML = `<li class="page-item" onclick="moveToPage(1)"><a class="page-link">&lt;&lt;</a></li><li class="page-item" onclick="moveToPage(${
+      page - 1
+    })"><a class="page-link">&lt;</a></li>`;
+  }
+  for (let i = firstPage; i <= lastPage; i++) {
+    paginationHTML += `<li class="page-item ${
+      i === page ? "active" : ""
+    }" onclick="moveToPage(${i})"><a class="page-link page-color">${i}</a></li>`;
+  }
+  if(lastPage < totalPages){
+    paginationHTML += ` <li class="page-item"onclick="moveToPage(${
+      page + 1
+    })"><a class="page-link">></a></li><li class="page-item"onclick="moveToPage(${totalPages})"><a class="page-link">&gt;&gt;</a></li>`;
+  }
+  document.querySelector(".pagination").innerHTML = paginationHTML;
+};
+
+const moveToPage = (pageNum) => {
+  console.log(pageNum);
+  page = pageNum;
+  getPuppy();
+};
+
+getLatestPuppy();
 //메뉴바 열고 닫기
 const openNav = () => {
   document.getElementById("mySideNav").style.width = "270px";

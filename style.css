@@ -257,6 +257,10 @@ header button {
 .pink {
   color: #F33A71;
 }
+.pagination-box{
+  display: flex;
+  justify-content: center;
+}
 @media (max-width: 1024px) {
   .container {
     max-width: 80rem;
@@ -296,4 +300,5 @@ header button {
   a {
   text-decoration-line: none;
   color: black;
+}
 }

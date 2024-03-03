@@ -17,7 +17,6 @@ const getPuppy = async () => {
   const response = await fetch(url);
   const data = await response.json();
   animal = data.AbdmAnimalProtect;
-  console.log("ddd", data);
   pop = animal[1].row.filter((data) => {
     return data.SEX_NM == "Q";
   });
@@ -26,8 +25,6 @@ const getPuppy = async () => {
   );
   puppyList = filter;
   totalResults = data.AbdmAnimalProtect[0].head[0].list_total_count;
-  console.log(puppyList);
-  console.log(totalResults);
   render();
   paginationRender();
 };
