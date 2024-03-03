@@ -13,6 +13,8 @@ const getListBookmark = async () => {
   console.log(animals);
   renderBookmarks();
 };
+
+// 북마크 UI 상태 변경
 const bookmarkUi = (bookmarked) => {
   const bookmarks = getBookMarks();
   const bookmarkBtn = document.querySelector(
@@ -26,6 +28,7 @@ const bookmarkUi = (bookmarked) => {
   }
 };
 
+// 화면에 보여주기 +
 const renderBookmarks = () => {
   const bookmarkedAnimals = getBookmarkAnimals();
 
@@ -60,6 +63,7 @@ const renderBookmarks = () => {
   });
 };
 
+// 북마크 토글 기능 +
 const toggleBookmark = (idntfy) => {
   const bookmarked = getBookMarks();
 
@@ -74,16 +78,17 @@ const toggleBookmark = (idntfy) => {
   // bookmarkUi(idntfy);
 };
 
-// 로컬에 있는 것 불러오기
+// 로컬 스토리지 불러오기 +
 const getBookMarks = () => {
   return JSON.parse(localStorage.getItem('bookmarks')) || [];
 };
 
-// 로컬 스토리지에 저장하기
+// 로컬 스토리지에 저장하기 +
 const saveBookmarks = (bookmarked) => {
   localStorage.setItem('bookmarks', JSON.stringify(bookmarked));
 };
 
+// 로컬 스토리지에 저장된 것만 필터 -
 const getBookmarkAnimals = () => {
   const bookmarkedIds = getBookMarks();
   return animals.filter((animal) =>
