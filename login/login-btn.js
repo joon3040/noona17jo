@@ -13,7 +13,7 @@ const renderUserId = (id) => {
 };
 
 // 로그인 상태라면 아이디로 보여주기
-if (saveIsLogin !== null) {
+if (saveIsLogin !== null && saveUserId !== null) {
   renderUserId(saveUserId);
 }
 
