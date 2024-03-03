@@ -137,7 +137,7 @@ header button {
 .each {
   display: flex;
   flex-direction: column;
-  margin-right: 25px;
+  margin-right: 50px;
 }
 .each span {
   text-align: center;
